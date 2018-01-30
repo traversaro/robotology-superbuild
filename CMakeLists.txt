@@ -112,6 +112,7 @@ endif()
 # Dynamics 
 if(ROBOTOLOGY_ENABLE_DYNAMICS)
   find_or_build_package(iDynTree)
+  find_or_build_package(UnicyclePlanner)
   find_or_build_package(codyco-modules)
   if(ROBOTOLOGY_USES_MATLAB OR ROBOTOLOGY_USES_OCTAVE)
     find_or_build_package(yarp-matlab-bindings)
