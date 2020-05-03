@@ -219,9 +219,10 @@ jobs:
       shell: bash
       run: |
         # Download QtIFW
+        cd /c
         certutil.exe -urlcache -split -f https://github.com/robotology-dependencies/qtifw-binaries/releases/download/v3.1.1/QtIFW-3.1.1.zip QtIFW-3.1.1.zip
         7z.exe x QtIFW-3.1.1.zip
-        export PATH=$PATH:${GITHUB_WORKSPACE}/QtIFW-3.1.1/bin
+        export PATH=$PATH:/c/QtIFW-3.1.1/bin
         # As we need a lot of space, we build the installer in the C:\ drive 
         # that has more space of the D:\ drive in GitHub Actions
         mkdir /c/build-installer
