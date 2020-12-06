@@ -88,3 +88,6 @@ elseif(ROBOTOLOGY_PROJECT_TAGS STREQUAL "Custom")
 else()
     message(FATAL_ERROR "The ROBOTOLOGY_PROJECT_TAGS variable can be Stable, Unstable or Custom. ${ROBOTOLOGY_PROJECT_TAGS} value is not supported.")
 endif()
+
+option(ROBOTOLOGY_GENERATE_CONDA_RECIPES "If enabled, generate conda recipes instead of building the superbuild. This should not be used by end users." OFF)
+mark_as_advanced(ROBOTOLOGY_GENERATE_CONDA_RECIPES)

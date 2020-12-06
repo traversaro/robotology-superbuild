@@ -1,0 +1,28 @@
+{{ '{% set name =' }} "{{ name }}" {{ '%}' }} 
+
+package:
+{% raw %}  name: {{ name }} {% endraw %}
+  version: "{{ version.replace("v","") }}"
+
+source:
+  - url: https://github.com/{{ github_repo }}/archive/{{ github_tag }}.tar.gz
+
+build:
+  number: 0
+  run_exports:
+{% raw %}    # As robotology-superbuild packages tipically do not worry about ABI compatibility,
+    # we explicitly specify that for every patch version the ABI changes
+    - {{ pin_subpackage(name, max_pin='x.x.x') }}
+{% endraw %}
+
+requirements:
+  build:
+{% raw %}    - {{ compiler('c') }}
+    - {{ compiler('cxx') }} {% endraw %}
+    - cmake
+  host:
+{% for dep in dependencies %}    - {{ dep }} 
+{% endfor %}
+
+about:
+  home: https://github.com/{{ github_repo }}
