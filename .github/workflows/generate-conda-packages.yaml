@@ -3,6 +3,7 @@ name: Generate conda packages
 # Check doc/conda-recipe-generation.md for more info
 
 on:
+  push:
   workflow_dispatch:
   schedule:
   # Run the job once a week
@@ -37,7 +38,7 @@ jobs:
           run: |
             mkdir build
             cd build
-            cmake -GNinja -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -C ${GITHUB_WORKSPACE}/.ci/initial−cache.gh.cmake ..
+            cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON ..
 
         - name: Generate recipes [Windows]
           if: contains(matrix.os, 'windows')
@@ -45,11 +46,17 @@ jobs:
           run: |
             mkdir build
             cd build
-            cmake -G"Visual Studio 16 2019" -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -C ${GITHUB_WORKSPACE}/.ci/initial−cache.gh.cmake ..
+            cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON ..
 
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
         - name: Disable options not supported in conda
+          shell: bash -l {0}
+          run: |
+            cd build
+            cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
+            
+        - name: Build conda packages
           shell: bash -l {0}
           run: |
             cd build/conda/generated_recipes
