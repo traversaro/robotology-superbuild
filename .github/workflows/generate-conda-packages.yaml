@@ -1,0 +1,56 @@
+name: Gpdate latest releases
+# This action automatically generate conda packages for the packages in the robotology-superbuild
+# Check doc/conda-recipe-generation.md for more info
+
+on:
+  workflow_dispatch:
+  schedule:
+  # Run the job once a week
+  - cron: '0 0 * * 2'
+
+jobs:
+    generate-conda-packages:
+        name: "Generate conda packages @${{ matrix.os }}"
+        runs-on:  ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+              os: [ubuntu-latest, macos-latest, windows-2019]
+
+        steps:
+        - uses: actions/checkout@v2
+
+        - uses: conda-incubator/setup-miniconda@v2
+          with:
+            mamba-version: "*"
+            channels: conda-forge
+            channel-priority: true
+
+        - name: Dependencies for conda recipes generation
+          shell: bash -l {0}
+          run: |
+            mamba install pyyaml jinja2 conda-build
+            
+        - name: Generate recipes [Linux&macOS]
+          if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+          shell: bash -l {0}
+          run: |
+            mkdir build
+            cd build
+            cmake -GNinja -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -C ${GITHUB_WORKSPACE}/.ci/initial−cache.gh.cmake ..
+
+        - name: Generate recipes [Windows]
+          if: contains(matrix.os, 'windows')
+          shell: bash -l {0}
+          run: |
+            mkdir build
+            cd build
+            cmake -G"Visual Studio 16 2019" -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON -C ${GITHUB_WORKSPACE}/.ci/initial−cache.gh.cmake ..
+
+        # Disable options not tested on Conda for now
+        # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
+        - name: Disable options not supported in conda
+          shell: bash -l {0}
+          run: |
+            cd build/conda/generated_recipes
+            conda-build .
