@@ -30,7 +30,7 @@ def main():
     metametadata = yaml.load(open(args.metametadata), Loader=yaml.FullLoader)
 
     for pkg in metametadata['conda-packages-metametadata']:
-        print("generate_conda_recipes_from_metadatadata: generate recipe for package {pkg}")
+        print(f"generate_conda_recipes_from_metadatadata: generate recipe for package {pkg}")
         pkg_info = metametadata['conda-packages-metametadata'][pkg]
         recipe_dir = os.path.join(os.path.realpath(args.recipes_dir), pkg_info['name'])
         shutil.rmtree(recipe_dir, ignore_errors=True)
