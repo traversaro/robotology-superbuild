@@ -124,7 +124,7 @@ macro(generate_conda_recipes)
   if(CONDA_GENERATION_SCRIPT_RETURN_VALUE STREQUAL "0")
     message(STATUS "conda recipes correctly generated in ${generated_conda_recipes_dir}.")
     message(STATUS "To build the generated conda recipes, navigate to the directory and run conda build . in it.")
-  else
+  else()
     message(FATAL_ERROR "Error in execution of script ${python_generation_script}")
   endif()
 endmacro()
