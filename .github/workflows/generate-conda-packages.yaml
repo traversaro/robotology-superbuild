@@ -38,7 +38,7 @@ jobs:
           run: |
             mkdir build
             cd build
-            cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON ..
+            cmake -GNinja -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON ..
 
         - name: Generate recipes [Windows]
           if: contains(matrix.os, 'windows')
@@ -46,7 +46,7 @@ jobs:
           run: |
             mkdir build
             cd build
-            cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON ..
+            cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DROBOTOLOGY_PROJECT_TAGS=LatestRelease -DROBOTOLOGY_GENERATE_CONDA_RECIPES:BOOL=ON ..
 
         # Disable options not tested on Conda for now
         # Reference issue: https://github.com/robotology/robotology-superbuild/issues/563
