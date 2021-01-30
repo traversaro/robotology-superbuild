@@ -8,14 +8,10 @@ set(OsqpEigen_CONDA_PKG_NAME "osqp-eigen")
 set(WBToolbox_CONDA_PKG_NAME "wb-toolbox")
 set(UnicyclePlanner_CONDA_PKG_NAME "unicycle-footstep-planner")
 
-# Temporary overload of YCM and YARP versions
-set(YCM_CONDA_VERSION "0.12.0.1")
-set(YARP_CONDA_VERSION "3.4.1.1")
-
 # Inject additional conda dependencies
-set(YARP_CONDA_DEPENDENCIES ace opencv tinyxml qt eigen sdl sdl2 sqlite)
-# gsl omitted due to https://github.com/conda-forge/gsl-feedstock/issues/50
-set(ICUB_CONDA_DEPENDENCIES ace opencv ipopt libode qt sdl)
+set(YARP_CONDA_DEPENDENCIES ace opencv tinyxml qt eigen sdl sdl2 sqlite libjpeg-turbo)
+set(ICUB_CONDA_DEPENDENCIES ace opencv gsl ipopt libode qt sdl)
+
 if(NOT APPLE)
   list(APPEND ICUB_CONDA_DEPENDENCIES freeglut)
 endif()
