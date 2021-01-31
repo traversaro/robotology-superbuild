@@ -108,6 +108,16 @@ macro(generate_metametadata_file)
       endforeach()
     endif()
 
+    # If some dependency require opengl to build and we are on Linux, add the required packages
+    # See https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+      if("qt" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
+         "freeglut" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES OR
+         "irrlicht" IN_LIST ${_cmake_pkg}_CONDA_DEPENDENCIES)
+        string(APPEND metametadata_file_contents "    require_opengl_linux: true\n")
+      endif()
+    endif()
+
     string(APPEND metametadata_file_contents "\n")
   endforeach()
 
