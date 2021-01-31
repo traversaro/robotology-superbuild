@@ -10,3 +10,6 @@ ycm_ep_helper(matio-cpp TYPE GIT
               COMPONENT dynamics
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF)
+
+
+set(matio-cpp_CONDA_VERSION "0.0.0.1")

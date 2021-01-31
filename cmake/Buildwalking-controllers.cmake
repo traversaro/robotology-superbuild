@@ -29,3 +29,5 @@ ycm_ep_helper(walking-controllers TYPE GIT
               COMPONENT dynamics
               FOLDER src
               DEPENDS ${walking-controllers_DEPENDS})
+
+set(walking-controllers_CONDA_DEPENDENCIES "eigen")
