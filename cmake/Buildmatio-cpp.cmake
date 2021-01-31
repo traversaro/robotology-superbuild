@@ -13,3 +13,4 @@ ycm_ep_helper(matio-cpp TYPE GIT
 
 
 set(matio-cpp_CONDA_VERSION "0.0.0.1")
+set(matio-cpp_CONDA_DEPENDENCIES "libmatio")
