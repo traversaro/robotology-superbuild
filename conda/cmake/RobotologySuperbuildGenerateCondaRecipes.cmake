@@ -64,7 +64,7 @@ macro(generate_metametadata_file)
     # that one by defining appropriately the <_cmake_pkg>_CONDA_PACKAGE_NAME 
     # and <_cmake_pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE variables
     if(DEFINED ${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE AND
-       ${${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE})
+       "${${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE}")
       continue()
     endif()
     
