@@ -2,6 +2,8 @@
 # converting to lower case the CMake package name
 # For the projects for which we like to use a different
 # strategy, we specify the _CONDA_PKG_NAME hereafter
+# Example: set(YARP_CONDA_PKG_NAME yarp)
+
 
 # Inject additional conda dependencies
 set(YARP_CONDA_DEPENDENCIES ace opencv tinyxml qt eigen sdl sdl2 sqlite libjpeg-turbo)
@@ -12,3 +14,7 @@ if(NOT APPLE)
 endif()
 
 set(iDynTree_CONDA_DEPENDENCIES libxml2 ipopt eigen)
+
+# If a package is already available in conda-forge, use it instead of generating a recipe for it
+set(osqp_CONDA_PKG_NAME libosqp)
+set(osqp_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
