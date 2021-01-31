@@ -146,11 +146,12 @@ get_property(_superbuild_pkgs GLOBAL PROPERTY YCM_PROJECTS)
 # when referring to dependencies
 foreach(_cmake_pkg IN LISTS _superbuild_pkgs)
   # Unless the <_cmake_pkg>_CONDA_PKG_NAME variable is explicitly defined,
-  # we use the git repo name as the conda pkg name as the convention are similar 
+  # we use the git repo name as the conda pkg name as the convention are similar
   # (lowercase names, separated by dash)
   if(NOT DEFINED ${_cmake_pkg}_CONDA_PKG_NAME)
-    string(REGEX MATCH "^[^\/:]+\/([^\/:]+).git$" ${_cmake_pkg}_CONDA_PKG_NAME "${_YH_${_cmake_pkg}_REPOSITORY}")
-    if(${${_cmake_pkg}_CONDA_PKG_NAME} STREQUAL "")
+    string(REGEX MATCH "^[^\/:]+\/([^\/:]+).git$" UNUSED_REGEX_MATCH_OUTPUT "${_YH_${_cmake_pkg}_REPOSITORY}")
+    set(${_cmake_pkg}_CONDA_PKG_NAME ${CMAKE_MATCH_1})
+    if("${${_cmake_pkg}_CONDA_PKG_NAME}" STREQUAL "")
       message(FATAL_ERROR "Error in extracting conda package name for CMake package ${_cmake_pkg} with repo ${_YH_${_cmake_pkg}_REPOSITORY}")
     endif()
   endif()
