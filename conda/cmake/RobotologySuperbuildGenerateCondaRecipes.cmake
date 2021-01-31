@@ -60,6 +60,14 @@ macro(generate_metametadata_file)
 
   get_property(_superbuild_pkgs GLOBAL PROPERTY YCM_PROJECTS)
   foreach(_cmake_pkg IN LISTS _superbuild_pkgs)
+    # If a package is already available in conda-forge, we use
+    # that one by defining appropriately the <_cmake_pkg>_CONDA_PACKAGE_NAME 
+    # and <_cmake_pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE variables
+    if(DEFINED ${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE AND
+       ${${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE})
+      continue()
+    endif()
+    
     # Compute conda version
     if(DEFINED ${_cmake_pkg}_TAG)
      set(${_cmake_pkg}_CONDA_TAG ${${_cmake_pkg}_TAG})
