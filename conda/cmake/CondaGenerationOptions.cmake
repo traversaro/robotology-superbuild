@@ -12,6 +12,9 @@ set(ICUB_CONDA_DEPENDENCIES ace opencv gsl ipopt libode qt sdl)
 if(NOT APPLE)
   list(APPEND ICUB_CONDA_DEPENDENCIES freeglut)
 endif()
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  list(APPEND ICUB_CONDA_DEPENDENCIES libglu)
+endif()
 
 set(iDynTree_CONDA_DEPENDENCIES libxml2 ipopt eigen)
 
