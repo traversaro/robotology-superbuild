@@ -44,7 +44,7 @@ jobs:
         # Compilation related dependencies 
         mamba install cmake compilers make ninja pkg-config
         # Actual dependencies
-        mamba install ace asio boost eigen gazebo glew glfw gsl ipopt libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
+        mamba install ace asio boost eigen gazebo glew glfw gsl ipopt irrlicht libjpeg-turbo libmatio libode libxml2 opencv pkg-config portaudio qt sdl sdl2 sqlite tinyxml
 
     # Additional dependencies useful only on Linux
     - name: Dependencies [Conda/Linux]
@@ -71,8 +71,8 @@ jobs:
       # ROBOTOLOGY_ENABLE_ICUB_HEAD is disabled due to https://github.com/robotology/icub-main/issues/685
       shell: bash -l {0}
       run: |
-        # Workaround for https://github.com/conda-forge/freeglut-feedstock/issues/26
-        mamba install freeglut==3.0.0
+        # Windows-only dependencies
+        mamba install freeglut
         mkdir -p build
         cd build
         cmake -G"Visual Studio 16 2019" -C ${GITHUB_WORKSPACE}/.ci/initial-cache.gh.cmake -DNON_INTERACTIVE_BUILD:BOOL=TRUE -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}  ${{ matrix.project_tags_cmake_options }}  ..
@@ -243,7 +243,7 @@ jobs:
         # Core dependencies
         brew install ace boost cmake eigen gsl ipopt jpeg libedit opencv pkg-config portaudio qt@5 sqlite swig tinyxml
         # ROBOTOLOGY_ENABLE_DYNAMICS dependencies
-        brew install libmatio
+        brew install libmatio irrlicht
         # ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS (qhull and cppad are installed  with brew)
         brew install cppad qhull
         # ROBOTOLOGY_USES_GAZEBO dependencies
