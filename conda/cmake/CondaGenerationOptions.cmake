@@ -16,7 +16,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   list(APPEND ICUB_CONDA_DEPENDENCIES libglu)
 endif()
 
-set(iDynTree_CONDA_DEPENDENCIES libxml2 ipopt eigen qt)
+set(iDynTree_CONDA_DEPENDENCIES libxml2 ipopt eigen qt irrlicht)
 
 # If a package is already available in conda-forge, use it instead of generating a recipe for it
 set(osqp_CONDA_PKG_NAME libosqp)
