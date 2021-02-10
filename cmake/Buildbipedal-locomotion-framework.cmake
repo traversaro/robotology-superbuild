@@ -44,4 +44,5 @@ ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
                          -DFRAMEWORK_USE_LieGroupControllers:BOOL=${ROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS}
               DEPENDS ${bipedal-locomotion-framework_DEPENDS})
 
+set(bipedal-locomotion-framework_CONDA_VERSION "0.0.0.1")
 set(bipedal-locomotion-framework_CONDA_DEPENDENCIES eigen)
