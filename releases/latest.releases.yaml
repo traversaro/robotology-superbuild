@@ -161,8 +161,8 @@ repositories:
     version: v1.0.0
   bipedal-locomotion-framework:
     type: git
-    url: https://github.com/dic-iit/bipedal-locomotion-framework.git
-    version: 46d8f68c51fad71ae06db8686fa88218f7404923
+    url: https://github.com/traversaro/bipedal-locomotion-framework.git
+    version: v0.0.0.1
   LieGroupControllers:
     type: git
     url: https://github.com/dic-iit/lie-group-controllers.git
