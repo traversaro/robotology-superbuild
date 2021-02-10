@@ -29,4 +29,4 @@ ycm_ep_helper(qpOASES TYPE GIT
               FOLDER src
               CMAKE_ARGS -DQPOASES_BUILD_BINDINGS_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB})
 
-set(qpOASES_CONDA_PACKAGE_NAME "qpoases")
+set(qpOASES_CONDA_PKG_NAME "qpoases")
