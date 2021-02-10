@@ -8,7 +8,8 @@ cmake ^
     -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DCMAKE_INSTALL_LIBDIR=lib ^
-    -DBUILD_SHARED_LIBS=ON ^
+{# Build shared libs for now disabled as a workaround for https://github.com/robotology/icub-main/issues/717 #}
+{# -DBUILD_SHARED_LIBS=ON ^ #}
 {% for cmake_arg in cmake_args %}    {{ cmake_arg }} ^
 {% endfor %}    %SRC_DIR%
 if errorlevel 1 exit 1
