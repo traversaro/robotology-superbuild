@@ -22,12 +22,16 @@ requirements:
     - {{ compiler('cxx') }} {% endraw %}
     - cmake
 {# Handle specific packages required for gl on Linux, see https://conda-forge.org/docs/maintainer/knowledge_base.html?#libgl #}
+{# libxcb and expat are not documented anywhere, but without those blocktest does not build correctly #}
 {% if require_opengl_linux %}{% raw %}    - {{ cdt('mesa-libgl-devel') }}
     - {{ cdt('mesa-dri-drivers') }}
     - {{ cdt('libselinux') }}
     - {{ cdt('libxdamage') }}
     - {{ cdt('libxxf86vm') }}
-    - {{ cdt('libxext') }}  {% endraw %}{% endif %}
+    - {{ cdt('libxext') }}
+    - {{ cdt('libxcb') }}
+    - {{ cdt('expat') }}  {% endraw %}{% endif %}
+
   host:
 {# List all dependencies just a host. Run dependenencies should be correctly set by run_exports #}
 {% for dep in dependencies %}    - {{ dep }}
