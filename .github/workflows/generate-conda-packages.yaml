@@ -60,4 +60,4 @@ jobs:
           shell: bash -l {0}
           run: |
             cd build/conda/generated_recipes
-            conda-build blocktest
+            conda-build .
