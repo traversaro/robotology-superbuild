@@ -74,7 +74,7 @@ repositories:
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
-    version: v1.1.0
+    version: c08ce098bd28550d546aee63c1bf562af68b8949
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
@@ -162,7 +162,7 @@ repositories:
   bipedal-locomotion-framework:
     type: git
     url: https://github.com/traversaro/bipedal-locomotion-framework.git
-    version: v0.0.0.1
+    version: v0.0.0.2
   LieGroupControllers:
     type: git
     url: https://github.com/dic-iit/lie-group-controllers.git
