@@ -32,7 +32,7 @@ endif()
 
 ycm_ep_helper(bipedal-locomotion-framework TYPE GIT
               STYLE GITHUB
-              REPOSITORY dic-iit/bipedal-locomotion-framework.git
+              REPOSITORY traversaro/bipedal-locomotion-framework.git
               TAG master
               COMPONENT dynamics
               FOLDER src
