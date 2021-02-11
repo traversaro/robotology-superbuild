@@ -70,7 +70,7 @@ repositories:
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
-    version: v2.3.0
+    version: cb37dcf4aab6bae08a62ba6c91dafbfaa97ca06a
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
