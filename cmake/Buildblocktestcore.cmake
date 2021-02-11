@@ -16,3 +16,4 @@ ycm_ep_helper(blocktestcore TYPE GIT
               DEPENDS YCM)
 
 set(blocktestcore_CONDA_DEPENDENCIES qt boost-cpp)
+set(blocktestcore_CONDA_VERSION "2.3.0.1")
