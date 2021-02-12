@@ -53,8 +53,11 @@ jobs:
         - name: Disable options not supported in conda
           shell: bash -l {0}
           run: |
+            # Cleanup recipes
+            rm -rf build/conda/generated_recipes
+            # Re-generate 
             cd build
-            cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
+            cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_MATLAB:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_ENABLE_DYNAMICS_FULL_DEPS:BOOL=OFF .
             
         - name: Build conda packages
           shell: bash -l {0}
