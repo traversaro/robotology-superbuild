@@ -60,4 +60,4 @@ jobs:
           shell: bash -l {0}
           run: |
             cd build/conda/generated_recipes
-            conda-build .
+            conda-build -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
