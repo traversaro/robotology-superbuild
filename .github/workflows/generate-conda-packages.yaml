@@ -27,10 +27,10 @@ jobs:
             channels: conda-forge
             channel-priority: true
 
-        - name: Dependencies for conda recipes generation
+        - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
-            mamba install pyyaml jinja2 conda-build ninja
+            mamba install pyyaml jinja2 conda-build ninja anaconda-client
             
         - name: Generate recipes [Linux&macOS]
           if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
