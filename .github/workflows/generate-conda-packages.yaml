@@ -71,7 +71,7 @@ jobs:
           shell: bash -l {0}
           run: |
             cd build/conda/generated_recipes
-            conda-build -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml ycm-cmake-modules yarp icub-main icub-models gazebo-yarp-plugins
+            conda-build -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
 
         - name: Upload conda packages
           shell: bash -l {0}
