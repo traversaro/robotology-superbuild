@@ -65,10 +65,12 @@ jobs:
             cd build/conda/generated_recipes
             conda-build -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml ycm
 
+
         - name: Upload conda packages
           shell: bash -l {0}
           env:
             ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
           run: |
             cd build/conda/generated_recipes
+            ls ${CONDA_PREFIX}/conda-bld/*-64/*.tar.bz2
             anaconda upload ${CONDA_PREFIX}/conda-bld/*-64/*.tar.bz2
