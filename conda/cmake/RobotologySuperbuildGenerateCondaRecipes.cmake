@@ -153,6 +153,8 @@ get_property(_projects GLOBAL PROPERTY YCM_PROJECTS)
 list(APPEND _projects YCM)
 set_property(GLOBAL PROPERTY YCM_PROJECTS ${_projects})
 set(_YH_YCM_REPOSITORY robotology/ycm.git)
+# Use ycm-cmake-modules as name as in debian
+set(YCM_CONDA_PKG_NAME ycm-cmake-modules)
 
 include(RobotologySuperbuildLogic)
 include(CondaGenerationOptions)
