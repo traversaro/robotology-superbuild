@@ -80,6 +80,6 @@ jobs:
           run: |
             cd ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/
             ls *.tar.bz2
-            anaconda upload *.tar.bz2
+            anaconda upload --skip-existing *.tar.bz2
             
 
