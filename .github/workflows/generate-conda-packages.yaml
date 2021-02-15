@@ -32,7 +32,9 @@ jobs:
             mamba-version: "*"
             channels: conda-forge
             channel-priority: true
-
+            python-version: "3.8"
+        
+        # Python 3.8 is required by https://github.com/Anaconda-Platform/anaconda-client/pull/551 
         - name: Dependencies for conda recipes generation and upload
           shell: bash -l {0}
           run: |
