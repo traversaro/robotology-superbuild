@@ -79,6 +79,4 @@ jobs:
           run: |
             cd build/conda/generated_recipes
             ls ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/*.tar.bz2
-            mkdir ./converted
-            conda convert --platform ${{ matrix.conda_platform}} ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/*.tar.bz2 -o ./converted
-            anaconda upload --label main ./converted/*.tar.bz2
+            anaconda upload --label main ${CONDA_PREFIX}/conda-bld/${{ matrix.conda_platform}}/*.tar.bz2 --forge
