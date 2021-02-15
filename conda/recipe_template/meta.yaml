@@ -9,7 +9,7 @@ source:
   git_rev: {{ github_tag }}
 
 build:
-  number: 0
+  number: 1
   run_exports:
 {% raw %}    # As robotology-superbuild packages tipically do not worry about ABI compatibility,
     # we explicitly specify that for every patch version the ABI changes
