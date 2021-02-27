@@ -18,11 +18,11 @@ repositories:
   CppAD:
     type: git
     url: https://github.com/coin-or/CppAD.git
-    version: 4aac52664de911af02cfade06131a9a6f6b48d7e
+    version: 20210000.4
   casadi:
     type: git
     url: https://github.com/GiulioRomualdi/casadi.git
-    version: a26cd8ffba99052b74553eec1daeff640eea7e79
+    version: 3.5.5.1
   YCM:
     type: git
     url: https://github.com/robotology/ycm.git
@@ -30,35 +30,35 @@ repositories:
   YARP:
     type: git
     url: https://github.com/robotology/yarp.git
-    version: v3.4.2
+    version: v3.4.3
   ICUB:
     type: git
     url: https://github.com/robotology/icub-main.git
-    version: v1.18.0
+    version: v1.19.0
   ICUBcontrib:
     type: git
     url: https://github.com/robotology/icub-contrib-common.git
-    version: v1.18.0
+    version: v1.19.0
   robots-configuration:
     type: git
     url: https://github.com/robotology/robots-configuration.git
-    version: v1.18.0
+    version: v1.19.0
   GazeboYARPPlugins:
     type: git
     url: https://github.com/robotology/gazebo-yarp-plugins.git
-    version: v3.5.1
+    version: v3.6.0
   icub-gazebo:
     type: git
     url: https://github.com/robotology/icub-gazebo.git
-    version: v1.18.0
+    version: v1.19.0
   icub-models:
     type: git
     url: https://github.com/robotology/icub-models.git
-    version: v1.18.1
+    version: v1.19.0
   yarp-matlab-bindings:
     type: git
     url: https://github.com/robotology/yarp-matlab-bindings.git
-    version: v3.4.0
+    version: v3.4.1
   RobotTestingFramework:
     type: git
     url: https://github.com/robotology/robot-testing-framework.git
@@ -66,15 +66,15 @@ repositories:
   icub-tests:
     type: git
     url: https://github.com/robotology/icub-tests.git
-    version: v1.18.0
+    version: v1.19.0
   blocktestcore:
     type: git
     url: https://github.com/robotology/blocktest.git
-    version: cb37dcf4aab6bae08a62ba6c91dafbfaa97ca06a
+    version: v2.3.1
   blocktest-yarp-plugins:
     type: git
     url: https://github.com/robotology/blocktest-yarp-plugins.git
-    version: c08ce098bd28550d546aee63c1bf562af68b8949
+    version: v1.1.1
   iDynTree:
     type: git
     url: https://github.com/robotology/idyntree.git
@@ -114,7 +114,7 @@ repositories:
   walking-teleoperation:
     type: git
     url: https://github.com/robotology/walking-teleoperation.git
-    version: 99e8c5e6e5d91bbe7ef6e02ceb7a0c599b3e19fd
+    version: v1.0.0
   forcetorque-yarp-devices:
     type: git
     url: https://github.com/robotology/forcetorque-yarp-devices.git
@@ -134,19 +134,23 @@ repositories:
   icub_firmware_shared:
     type: git
     url: https://github.com/robotology/icub-firmware-shared.git
-    version: v1.18.0
+    version: v1.19.0
   icub-firmware:
     type: git
     url: https://github.com/robotology/icub-firmware.git
-    version: v1.18.0
+    version: v1.19.0
   icub-firmware-build:
     type: git
     url: https://github.com/robotology/icub-firmware-build.git
-    version: v1.18.0
+    version: v1.19.0
   yarp-device-xsensmt:
     type: git
     url: https://github.com/robotology/yarp-device-xsensmt.git
     version: v0.1.0
+  yarp-device-ovrheadset:
+    type: git
+    url: https://github.com/robotology/yarp-device-ovrheadset.git
+    version: v1.0.0
   speech:
     type: git
     url: https://github.com/robotology/speech.git
@@ -154,15 +158,15 @@ repositories:
   icub-basic-demos:
     type: git
     url: https://github.com/robotology/icub-basic-demos.git
-    version: v1.18.0
+    version: v1.19.0
   funny-things:
     type: git
     url: https://github.com/robotology/funny-things.git
     version: v1.0.0
   bipedal-locomotion-framework:
     type: git
-    url: https://github.com/traversaro/bipedal-locomotion-framework.git
-    version: v0.0.0.2
+    url: https://github.com/dic-iit/bipedal-locomotion-framework.git
+    version: v0.1.0
   LieGroupControllers:
     type: git
     url: https://github.com/dic-iit/lie-group-controllers.git
@@ -175,3 +179,7 @@ repositories:
     type: git
     url: https://github.com/dic-iit/matio-cpp.git
     version: v0.1.0
+  diagnosticdaemon:
+    type: git
+    url: https://github.com/robotology/diagnostic-daemon.git
+    version: v1.0.0

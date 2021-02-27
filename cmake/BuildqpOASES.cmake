@@ -27,6 +27,6 @@ ycm_ep_helper(qpOASES TYPE GIT
               TAG master
               COMPONENT external
               FOLDER src
-              CMAKE_ARGS -DQPOASES_BUILD_BINDINGS_MATLAB:BOOL=${ROBOTOLOGY_USES_MATLAB})
+              CMAKE_ARGS -DQPOASES_BUILD_BINDINGS_MATLAB:BOOL=ON)
 
 set(qpOASES_CONDA_PKG_NAME "qpoases")
