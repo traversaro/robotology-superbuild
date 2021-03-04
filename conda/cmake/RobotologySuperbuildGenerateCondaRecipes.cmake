@@ -83,6 +83,7 @@ macro(generate_metametadata_file)
     set(${_cmake_pkg}_CONDA_CMAKE_ARGS ${_YH_${_cmake_pkg}_CMAKE_ARGS})
     list(APPEND ${_cmake_pkg}_CONDA_CMAKE_ARGS ${_YH_${_cmake_pkg}_CMAKE_CACHE_ARGS})
     list(APPEND ${_cmake_pkg}_CONDA_CMAKE_ARGS ${_YH_${_cmake_pkg}_CMAKE_CACHE_DEFAULT_ARGS})
+    list(APPEND ${_cmake_pkg}_CONDA_CMAKE_ARGS ${YCM_EP_ADDITIONAL_CMAKE_ARGS})
 
     # Compute conda dependencies
     # Always append so dependencies not tracked by the superbuild can be injected by
