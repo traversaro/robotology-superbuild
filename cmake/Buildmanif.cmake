@@ -12,4 +12,5 @@ ycm_ep_helper(manif TYPE GIT
               FOLDER src
               CMAKE_ARGS -DBUILD_TESTING:BOOL=OFF -DBUILD_EXAMPLES:BOOL=OFF)
               
-set(manif_CONDA_DEPENDENCIES eigen)
+set(manif_CONDA_PKG_NAME cppad)
+set(manif_CONDA_PKG_CONDA_FORGE_OVERRIDE ON)
