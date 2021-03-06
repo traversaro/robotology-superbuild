@@ -67,7 +67,7 @@ macro(generate_metametadata_file)
        "${${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE}")
       continue()
     endif()
-    
+
     # Compute conda version
     if(DEFINED ${_cmake_pkg}_TAG)
      set(${_cmake_pkg}_CONDA_TAG ${${_cmake_pkg}_TAG})
@@ -83,7 +83,13 @@ macro(generate_metametadata_file)
     set(${_cmake_pkg}_CONDA_CMAKE_ARGS ${_YH_${_cmake_pkg}_CMAKE_ARGS})
     list(APPEND ${_cmake_pkg}_CONDA_CMAKE_ARGS ${_YH_${_cmake_pkg}_CMAKE_CACHE_ARGS})
     list(APPEND ${_cmake_pkg}_CONDA_CMAKE_ARGS ${_YH_${_cmake_pkg}_CMAKE_CACHE_DEFAULT_ARGS})
-    list(APPEND ${_cmake_pkg}_CONDA_CMAKE_ARGS ${YCM_EP_ADDITIONAL_CMAKE_ARGS})
+    # Convert YCM_EP_ADDITIONAL_CMAKE_ARGS to list
+    string(REPLACE " " ";" YCM_EP_ADDITIONAL_CMAKE_ARGS_AS_LIST "${YCM_EP_ADDITIONAL_CMAKE_ARGS}")
+    list(APPEND ${_cmake_pkg}_CONDA_CMAKE_ARGS ${YCM_EP_ADDITIONAL_CMAKE_ARGS_AS_LIST})
+
+    # Escape backlash for insertion in yaml
+    string(REPLACE "\\" "\\\\" ${_cmake_pkg}_CONDA_CMAKE_ARGS "${${_cmake_pkg}_CONDA_CMAKE_ARGS}")
+
 
     # Compute conda dependencies
     # Always append so dependencies not tracked by the superbuild can be injected by
