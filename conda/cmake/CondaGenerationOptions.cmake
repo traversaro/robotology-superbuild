@@ -8,6 +8,9 @@
 # Inject additional conda dependencies
 set(YARP_CONDA_DEPENDENCIES ace opencv tinyxml qt eigen sdl sdl2 sqlite libjpeg-turbo)
 set(ICUB_CONDA_DEPENDENCIES ace opencv gsl ipopt libode qt sdl)
+if(NOT (APPLE OR WIN32))
+  list(APPEND ICUB_CONDA_DEPENDENCIES libdc1394)
+endif()
 
 if(NOT APPLE)
   list(APPEND ICUB_CONDA_DEPENDENCIES freeglut)
