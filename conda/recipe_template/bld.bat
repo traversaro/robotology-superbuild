@@ -8,6 +8,7 @@ cmake ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
+    -DCMAKE_VERBOSE_MAKEFILE=ON ^
     -DCMAKE_INSTALL_LIBDIR=lib ^
 {% for cmake_arg in cmake_args %}    {{ cmake_arg }} ^
 {% endfor %}    %SRC_DIR%

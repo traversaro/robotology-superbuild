@@ -99,9 +99,8 @@ jobs:
         - name: Build conda packages
           shell: bash -l {0}
           run: |
-            cd build/conda/generated_recipes/bipedal-locomotion-framework
+            cd build/conda/generated_recipes/yarp-matlab-bindings
             conda-build -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
-
         - name: Upload conda packages
           shell: bash -l {0}
           env:

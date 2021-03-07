@@ -43,11 +43,13 @@ def write_script(generation_directory, name_without_extension, commands, interpr
     fname = generation_directory + "/" + name_without_extension + suffixes[interpreter]
     s = cmds.Script(commands)
 
+    print(f"Writing file to {fname}")
     with open(fname, 'w') as f:
         s = translators[interpreter].to_script(s)
         f.write(s)
 
     f.close()
+    print(f"File wrote to {fname}")
 
     return
 
@@ -98,7 +100,7 @@ def main():
     # Prepare Jinja templates
     file_loader = jinja2.FileSystemLoader(recipe_template_dir)
     env = jinja2.Environment(loader=file_loader)
-        # Load metametadata
+    # Load metametadata
     metametadata = yaml.load(open(args.metametadata), Loader=yaml.FullLoader)
 
     for pkg in metametadata['conda-packages-metametadata']:
@@ -109,11 +111,16 @@ def main():
 
         # Get pkginfo
         pkg_info = metametadata['conda-packages-metametadata'][pkg]
+        recipe_dir = os.path.join(os.path.realpath(args.recipes_dir), pkg_info['name'])
+        shutil.rmtree(recipe_dir, ignore_errors=True)
+        os.mkdir(recipe_dir)
+        print(recipe_dir)
 
         # Generate activation scripts
-        activation_script_msh = pkg + "_activate.msh"
-        deactivation_script_msh = pkg + "_deactivate.msh"
+        activation_script_msh = pkg_info['name'] + "_activate.msh"
+        deactivation_script_msh = pkg_info['name'] + "_deactivate.msh"
         if activation_script_msh in multisheller_scripts and deactivation_script_msh in multisheller_scripts:
+            print(f"Generating scripts for {pkg_info['name']}")
             generate_scripts_from_multisheller_file(multisheller_scripts_dir + "/" + activation_script_msh, recipe_dir, "activate")
             generate_scripts_from_multisheller_file(multisheller_scripts_dir + "/" + deactivation_script_msh, recipe_dir, "deactivate")
             # To copy the activation scripts in the recipe
@@ -122,9 +129,6 @@ def main():
             pkg_info['copy_activation_scripts'] = False
 
         # Generate recipe
-        recipe_dir = os.path.join(os.path.realpath(args.recipes_dir), pkg_info['name'])
-        shutil.rmtree(recipe_dir, ignore_errors=True)
-        os.mkdir(recipe_dir)
         for template_file in recipe_template_files:
             template = env.get_template(template_file)
             template_output = template.render(pkg_info)
