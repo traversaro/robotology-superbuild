@@ -103,7 +103,25 @@ def main():
 
     for pkg in metametadata['conda-packages-metametadata']:
         print(f"generate_conda_recipes_from_metadatadata: generating recipe for package {pkg}")
+
+        # Check if multisheller file are available for this package,
+        # if available generate activate scripts
+
+        # Get pkginfo
         pkg_info = metametadata['conda-packages-metametadata'][pkg]
+
+        # Generate activation scripts
+        activation_script_msh = pkg + "_activate.msh"
+        deactivation_script_msh = pkg + "_deactivate.msh"
+        if activation_script_msh in multisheller_scripts and deactivation_script_msh in multisheller_scripts:
+            generate_scripts_from_multisheller_file(multisheller_scripts_dir + "/" + activation_script_msh, recipe_dir, "activate")
+            generate_scripts_from_multisheller_file(multisheller_scripts_dir + "/" + deactivation_script_msh, recipe_dir, "deactivate")
+            # To copy the activation scripts in the recipe
+            pkg_info['copy_activation_scripts'] = True
+        else:
+            pkg_info['copy_activation_scripts'] = False
+
+        # Generate recipe
         recipe_dir = os.path.join(os.path.realpath(args.recipes_dir), pkg_info['name'])
         shutil.rmtree(recipe_dir, ignore_errors=True)
         os.mkdir(recipe_dir)
@@ -112,20 +130,6 @@ def main():
             template_output = template.render(pkg_info)
             with open(os.path.join(recipe_dir, template_file), 'w') as f:
                 f.write(template_output)
-
-        # Check if multisheller file are available for this package,
-        # if available generate activate scripts
-
-        # activate script
-        activation_script_msh = pkg + "_activate.msh"
-        if activation_script_msh in multisheller_scripts:
-            generate_scripts_from_multisheller_file(multisheller_scripts_dir + "/" + activation_script_msh, recipe_dir, "activate")
-
-        # deactivate script
-        deactivation_script_msh = pkg + "_deactivate.msh"
-        if deactivation_script_msh in multisheller_scripts:
-            generate_scripts_from_multisheller_file(multisheller_scripts_dir + "/" + deactivation_script_msh, recipe_dir, "deactivate")
-
 
 if __name__ == '__main__':
     main()

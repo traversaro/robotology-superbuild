@@ -20,3 +20,26 @@ if errorlevel 1 exit 1
 :: Install.
 cmake --build . --config Release --target install
 if errorlevel 1 exit 1
+
+{% if copy_activation_scripts is sameas true %}
+setlocal EnableDelayedExpansion
+:: Copy the [de]activate scripts to %PREFIX%\etc\conda\[de]activate.d.
+:: This will allow them to be run on environment activation.
+for %%F in (activate deactivate) DO (
+    if not exist %PREFIX%\etc\conda\%%F.d mkdir %PREFIX%\etc\conda\%%F.d
+    copy %RECIPE_DIR%\%%F.bat %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.bat
+    if %errorlevel% neq 0 exit /b %errorlevel%
+
+    copy %RECIPE_DIR%\%%F.sh %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.sh
+    if %errorlevel% neq 0 exit /b %errorlevel%
+
+    copy %RECIPE_DIR%\%%F.ps1 %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.ps1
+    if %errorlevel% neq 0 exit /b %errorlevel%
+
+    copy %RECIPE_DIR%\%%F.xsh %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.xsh
+    if %errorlevel% neq 0 exit /b %errorlevel%
+
+    copy %RECIPE_DIR%\%%F.zsh %PREFIX%\etc\conda\%%F.d\%PKG_NAME%_%%F.zsh
+    if %errorlevel% neq 0 exit /b %errorlevel%
+)
+{% endif %}
