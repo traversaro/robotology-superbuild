@@ -1,4 +1,4 @@
-{{ '{% set name =' }} "{{ name }}" {{ '%}' }} 
+{{ '{% set name =' }} "{{ name }}" {{ '%}' }}
 
 package:
 {% raw %}  name: {{ name }} {% endraw %}
@@ -9,7 +9,7 @@ source:
   git_rev: {{ github_tag }}
 
 build:
-  number: 3
+  number: {{ conda_build_number }}
   run_exports:
 {% raw %}    # As robotology-superbuild packages tipically do not worry about ABI compatibility,
     # we explicitly specify that for every patch version the ABI changes

@@ -61,7 +61,7 @@ macro(generate_metametadata_file)
   get_property(_superbuild_pkgs GLOBAL PROPERTY YCM_PROJECTS)
   foreach(_cmake_pkg IN LISTS _superbuild_pkgs)
     # If a package is already available in conda-forge, we use
-    # that one by defining appropriately the <_cmake_pkg>_CONDA_PACKAGE_NAME 
+    # that one by defining appropriately the <_cmake_pkg>_CONDA_PACKAGE_NAME
     # and <_cmake_pkg>_CONDA_PKG_CONDA_FORGE_OVERRIDE variables
     if(DEFINED ${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE AND
        "${${_cmake_pkg}_CONDA_PKG_CONDA_FORGE_OVERRIDE}")
@@ -108,6 +108,7 @@ macro(generate_metametadata_file)
     string(APPEND metametadata_file_contents "    version: ${${_cmake_pkg}_CONDA_VERSION}\n")
     string(APPEND metametadata_file_contents "    github_repo: ${${_cmake_pkg}_CONDA_GIHUB_REPO}\n")
     string(APPEND metametadata_file_contents "    github_tag: ${${_cmake_pkg}_CONDA_TAG}\n")
+    string(APPEND metametadata_file_contents "    conda_build_number: ${CONDA_BUILD_NUMBER}\n")
 
     if(NOT "${${_cmake_pkg}_CONDA_CMAKE_ARGS}" STREQUAL "")
       string(APPEND metametadata_file_contents "    cmake_args:\n")
