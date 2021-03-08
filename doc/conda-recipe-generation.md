@@ -3,15 +3,8 @@ Conda Recipe Generation
 
 ## Rationale
 
-`conda` is a package manager (originally for Python, but now quite language agnostic) that works on Linux, macOS and Windows. `conda-forge`  is a channel for the conda package manager that provides many dependency, in particular all the one that are required by the robotology-superbuild . The `robotology-superbuild` now contains experimental support for making the compiled binaries for  projects contained in it available as a `conda` binaries.
-
-The use of conda is complementary to the compilation modes that we already use and are not substituted by conda, but its advantages are:
-
-* Updated dependencies: conda-forge tipically has relatively recent version of the dependencies, so if you want to use a recent vtk or pcl on an old distro such as Ubuntu 16.04, you can. This permits us to support older distributions even when the packages that install via apt are relatively old.
-* No need for root permissions: all the software installed by conda is installed and used in a user directory, so even if you are on a system in which you do not have root access (such as a shared workstation) you can still install all you required dependencies
-* Use of binaries: conda distributes its packages as binaries, so even to download heavy dependencies such as OpenCV, PCL, Qt and Gazebo on Windows it just takes a few minutes, as opposed to hours necessary to compile them when using vcpkg. This is also useful when producing Docker images that require a recent version of PCL or VTK: installing them via conda takes a few seconds, and this would cut the time necessary to regenerate Docker images.
-* Reproducible enviroments: conda has built in support for installing exactly the same version of the packages you were using in the past, up to the patch version. This is quite important for reproducibility in scientific research. See https://www.nature.com/articles/d41586-020-02462-7 for a Nature article on the importance of reproducibility in scientific research.
-* On macOS and Windows, conda is also the package manager for which it is more easily possible to obtain working binaries of ROS1 and in the future of ROS2, thanks to the work of the [RoboStack project](https://github.com/RoboStack)
+See the [documentation on conda-forge and the robotology-superbuild](conda-forge.md) for a general discussion on how the robotology-superbuild and conda can work together. 
+This document describes how to 
 
 ## How to generate recipes
 
@@ -19,7 +12,8 @@ To generate the conda recipes for a given configuration of the `robotology-super
 
 After that, install the additional dependencies required for the recipe generation:
 ~~~
-conda install -c conda-forge pyyaml jinja2 conda-build
+conda install pyyaml jinja2 conda-build ninja anaconda-client
+python -m pip install git+https://github.com/wolfv/multisheller.git@0cc03c68d0c68d2f9cf7b07ddb68afa531419a6d
 ~~~
 
 Then, set the `ROBOTOLOGY_GENERATE_CONDA_RECIPES` CMake option to `ON` in the `robotology-superbuild` build. This will **deactivate** the usual logic
