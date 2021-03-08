@@ -94,12 +94,12 @@ jobs:
             rm -rf build/conda/generated_recipes
             # Re-generate 
             cd build
-            cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_ENABLE_ICUB_HEAD:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
+            cmake -DROBOTOLOGY_USES_OCTAVE:BOOL=OFF -DROBOTOLOGY_USES_PYTHON:BOOL=OFF .
             
         - name: Build conda packages
           shell: bash -l {0}
           run: |
-            cd build/conda/generated_recipes/yarp-matlab-bindings
+            cd build/conda/generated_recipes
             conda-build -m ${GITHUB_WORKSPACE}/conda/conda_build_config.yml .
         - name: Upload conda packages
           shell: bash -l {0}
