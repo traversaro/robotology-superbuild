@@ -9,7 +9,7 @@ cmake .. \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_INSTALL_LIBDIR=lib \
-    -DCMAKE_VERBOSE_MAKEFILE=ON \
+    -DCMAKE_VERBOSE_MAKEFILE=OFF \
     -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True \
 {% for cmake_arg in cmake_args %}    {{ cmake_arg }} \
 {% endfor %}
