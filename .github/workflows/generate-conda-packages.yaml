@@ -3,7 +3,6 @@ name: Generate conda packages
 # Check doc/conda-recipe-generation.md for more info
 
 on:
-  push:
   workflow_dispatch:
   schedule:
   # Run the job once a week
